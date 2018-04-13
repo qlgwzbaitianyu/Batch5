@@ -1,0 +1,100 @@
+Polymorphism
+is the ability of the java object to take on many forms
+
+Inheritance
+a mechanism where new class can derived from existing classes
+
+Abstraction
+abstraction is used to hide certain detail but reveal only ensential features 
+
+Encapsulation
+wrapping the data and code acting on data together as a single unit.
+
+Aggreagation
+A has-a relation between two classes, like one class has the other class as a member
+
+Composition
+speciation case of aggregation(has a relation ship), parent object dead, child object die too
+
+
+Association
+Relationship between two classes, could be one to one or one to many….
+
+
+What is default class modifier?
+when no specific class modifier its default, it can be accessed within the package
+
+
+What are the different method access modifiers?
+default: within pacakge
+public: everyone can see
+private: only with in the class
+protected: within the pacakge and subclasses in different pacage
+
+
+What is the use of a final modifier on a class?
+class can not be extended
+
+
+What is the use of a final modifier on a method?
+method can not be overidding
+
+
+Which package is always imported by default?
+java.lang
+
+Can I import same package/class twice? Will the JVM load the package twice at runtime?
+Yes, can import multiple times but jvm only load once
+
+
+Does importing a package imports the sub packages as well? E.g. Does importing com.bob.* also import com.bob.code.*?
+no, must specific import
+
+
+What is a Java package and how is it used?
+package is like folders to better organize and management of files.
+Also avoid duplicate name of files.
+
+Explain the usage of Java packages.
+package is like folders to better organize and management of files.
+Also avoid duplicate name of files.
+
+Are the imports checked for validity at compile time? 
+yes
+
+Difference between Public, Private, Default and Protected ?
+default: within pacakge
+public: everyone can see
+private: only with in the class
+protected: within the pacakge and subclasses in different pacage
+
+
+
+ Can we reduce the visibility of the overridden method ?
+  cant
+
+
+
+ Which access specifier can be used with Class ?
+public default private protected
+
+ Can we reduce the visibility of the inherited or overridden method ?
+cant
+
+What will happen if we make the constructor private ?
+constructor wont be accessible outside of your class so other classes wont be able to call it. 
+
+
+ Can we instantiate the object of derived class if parent constructor is protected ?
+yes
+
+ Can we declare an abstract method private ?
+no
+
+What is strictfp keyword and when do you use it?
+Strict floating point operations, ensures all platform have same result for floating point operation
+
+What is instanceOf operator?
+test whether the object is an instance of the specific type
+
+
