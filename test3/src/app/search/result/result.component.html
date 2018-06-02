@@ -1,0 +1,37 @@
+
+<div *ngFor="let re of result">
+
+  <div class="row">
+    <div class="col-xs-12">
+      {{re.artistName}}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      {{re.trackCensoredName}}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <img src="{{re.artworkUrl60}}" alt="">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <!--<li><a [routerLink]="['music-detail', re.artistName]">music-detail</a></li>-->
+      <li><a [routerLink]="['music-detail', re.artistName]" (click)="onClick(re)">music-detail</a></li>
+      <button class="btn btn-primary" type="button" (click)="addToMyfavorite(re)">add favorite</button>
+      <hr>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!--<div>-->
+  <!--{{result[0].trackCensoredName}}-->
+<!--</div>-->

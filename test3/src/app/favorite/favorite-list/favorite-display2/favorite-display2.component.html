@@ -1,0 +1,37 @@
+
+<div *ngIf="showItem" appCustomdirective>
+
+  <div class="row">
+    <div class="col-xs-12">
+      {{artistName}}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      {{collectionName}}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <a href="collectionViewUrl">{{collectionViewUrl}}</a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <img src="{{artworkUrl60}}" alt="">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <input type="button" value="remove from favorite" (click)="removeFav()">
+    </div>
+  </div>
+  <hr>
+</div>
+
+
+

@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-lg-offset-3 col-lg-6">
+    <div class="input-group">
+      <span class="input-group-btn">
+        <button class="btn btn-primary" type="button" (click)="onSearch()">search music</button>
+      </span>
+      <input type="text" class="form-control" placeholder="Search for..." [(ngModel)] = "artist">
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
+
+</div><!-- /.row -->
+
+<br>
+<hr>
+
+<div class="row">
+  <div class="col-xs-12">
+    <app-result [result]="resultlist"></app-result>
+  </div>
+</div>
+
+
+<br>
+<hr>
+
+
+<div class="row">
+  <div class="col-xs-12">
+    <button class="btn btn-primary" type="button" (click)="Gohome()">Go back</button>
+  </div>
+</div>
+
+

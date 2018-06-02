@@ -1,0 +1,214 @@
+
+
+<form class="form-horizontal" [formGroup]="customerForm" (ngSubmit)="save()">
+  <div class="form-group"
+       [ngClass]="{'has-error': (customerForm.get('firstname').touched ||
+                                              customerForm.get('firstname').dirty) &&
+                                              !customerForm.get('firstname').valid }">
+    <label class="col-md-2 control-label"
+           for="firstNameId">First Name</label>
+    <div class="col-md-8">
+      <input class="form-control"
+             id="firstNameId"
+             type="text"
+             placeholder="First Name"
+             formControlName="firstname" />
+    </div>
+
+
+
+
+  </div>
+
+  <div class="form-group"
+       [ngClass]="{'has-error': (customerForm.get('lastname').touched ||
+                                              customerForm.get('lastname').dirty) &&
+                                              !customerForm.get('lastname').valid }">
+
+    <label class="col-md-2 control-label"
+           for="firstNameId">Last Name</label>
+    <div class="col-md-8">
+      <input class="form-control"
+             id="lastNameId"
+             type="text"
+             placeholder="Last Name"
+             formControlName="lastname" />
+    </div>
+  </div>
+
+
+
+  <div class="form-group"
+       [ngClass]="{'has-error': (customerForm.get('email').touched ||
+                                              customerForm.get('email').dirty) &&
+                                              !customerForm.get('email').valid }">
+
+    <label class="col-md-2 control-label"
+           for="emailId">email</label>
+    <div class="col-md-8">
+      <input class="form-control"
+             id="emailId"
+             type="text"
+             placeholder="email"
+             formControlName="email" />
+    </div>
+  </div>
+
+
+
+  <div class="form-group"
+       [ngClass]="{'has-error': (customerForm.get('phone').touched ||
+                                              customerForm.get('phone').dirty) &&
+                                              !customerForm.get('phone').valid }">
+    <label class="col-md-2 control-label"
+           for="phoneId">phone</label>
+    <div class="col-md-8">
+      <input class="form-control"
+             id="phoneId"
+             type="text"
+             placeholder="phone"
+             formControlName="phone" />
+    </div>
+  </div>
+
+
+  <div class="form-group"
+       [ngClass]="{'has-error': (customerForm.get('updatepassword').touched ||
+                                              customerForm.get('updatepassword').dirty) &&
+                                              !customerForm.get('updatepassword').valid }">
+    <label class="col-md-2 control-label"
+           for="phoneId">updatepassword</label>
+    <div class="col-md-8">
+      <input class="form-control"
+             id="updatepasswordId"
+             type="text"
+             placeholder="updatepassword"
+             formControlName="updatepassword" />
+    </div>
+  </div>
+
+
+  <div class="form-group">
+
+    <label class="col-md-2 control-label">Send Notifications</label>
+    <div class="col-md-8">
+      <label class="radio-inline">
+        <input type="radio"
+               value="email"
+               formControlName = "notification"
+               (click)="setNotification('email')">Email
+      </label>
+      <label class="radio-inline">
+        <input type="radio"
+               value="text"
+               formControlName = "notification"
+               (click)="setNotification('text')">Text
+      </label>
+    </div>
+  </div>
+
+
+  <div formArrayName="addresses" *ngFor="let address of addresses.controls; let i=index">
+    <div [formGroupName]="i">
+
+      <div class="form-group">
+        <div class="col-md-4 col-md-offset-2">
+      <span>
+        <button class="btn btn-primary" type="button"  (click)="deleteAddress(i)" >delete address</button>
+      </span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-2 control-label"
+               attr.for ="{{ 'street1Id' + i }}">Street Address 1</label>
+        <div class="col-md-8">
+          <input type="text"
+                 class="form-control"
+                 id="{{ 'street1Id' + i }}"
+                 placeholder="Street address"
+                 formControlName="street1">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-2 control-label"
+               for="street2Id">Street Address 2</label>
+        <div class="col-md-8">
+          <input type="text"
+                 class="form-control"
+                 id="street2Id"
+                 placeholder="Street address (second line)"
+                 formControlName="street2">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-2 control-label"
+               for="cityId">City, State, Zip Code</label>
+        <div class="col-md-3">
+          <input type="text"
+                 class="form-control"
+                 id="cityId"
+                 placeholder="City"
+                 formControlName="city">
+        </div>
+        <div class="col-md-3">
+          <select class="form-control"
+                  id="stateId"
+                  formControlName="state">
+            <option value="" disabled selected hidden>Select a State...</option>
+            <option value="AL">Alabama</option>
+            <option value="AK">Alaska</option>
+            <option value="AZ">Arizona</option>
+            <option value="AR">Arkansas</option>
+            <option value="CA">California</option>
+            <option value="CO">Colorado</option>
+            <option value="WI">Wisconsin</option>
+            <option value="WY">Wyoming</option>
+          </select>
+        </div>
+        <div class="col-md-2">
+          <input type="number"
+                 class="form-control"
+                 id="zipId"
+                 placeholder="Zip Code"
+                 formControlName="zip">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-md-4 col-md-offset-2">
+      <span>
+        <button class="btn btn-primary" type="button"  (click)="addAddress()" >add address</button>
+      </span>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+  <div class="form-group">
+    <div class="col-md-4 col-md-offset-2">
+      <span>
+        <button class="btn btn-primary" type="submit"  >Submit</button>
+      </span>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-md-4 col-md-offset-2">
+      <span>
+        <a routerLink="/showprofile">view profile</a>
+        <!--<button class="btn btn-primary" type="button" (click)="view()" >view</button>-->
+      </span>
+    </div>
+  </div>
+
+</form>
