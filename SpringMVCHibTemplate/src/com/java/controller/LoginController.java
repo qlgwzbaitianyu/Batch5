@@ -52,7 +52,6 @@ public class LoginController {
 	@RequestMapping("/")
 	public ModelAndView startPage(Model model) { 
 		ModelAndView mv = new ModelAndView("homePage");
-		 mv.addObject("Customer", new Customer());
 		return mv;
 	}
 	
@@ -61,13 +60,18 @@ public class LoginController {
 	public ModelAndView toLogIn(HttpServletRequest request) { 
 		ModelAndView mv = new ModelAndView("login");
 		mv.addObject("loginMsg", "Welcome to log in page");
+		mv.addObject("Customer", new Customer());
 		return mv;
 	}
 	@RequestMapping("/login")
 	public ModelAndView login(@ModelAttribute ("Customer")Customer customer, HttpServletRequest request, BindingResult result) { 
 		ModelAndView mv = new ModelAndView("homePage");
+		if(result.hasErrors()) {
+			mv.setViewName("login");
+		}
+		
 		Customer customerResult = customerService.validation(customer, null);
-		if(customerResult != null) {			/* valid user save into session */
+		if(customerResult != null) {			 //valid user save into session 
 			System.out.println(customerResult);
 			HttpSession session = request.getSession();
 			session.setAttribute("customer", customerResult);
@@ -78,6 +82,8 @@ public class LoginController {
 			mv.addObject("errorMsg", "wrong name or password");
 		}
 		
+		//customerService.validation(customer, null);
+			
 		return mv;
 	}
 	
@@ -102,7 +108,6 @@ public class LoginController {
 		
 		return "error";
 	}
-	
 	
 	
 	

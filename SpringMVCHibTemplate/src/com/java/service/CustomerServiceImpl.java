@@ -27,7 +27,7 @@ public class CustomerServiceImpl implements CustomerService {
 	
 	@Override
 	public Customer validation(Customer customer, Session hibernateSession) {
-		return customerRepository.validation(customer);
+		return customerRepository2.validation(customer);
 	}
 
 	@Override

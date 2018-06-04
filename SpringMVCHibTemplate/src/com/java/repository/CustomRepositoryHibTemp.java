@@ -1,4 +1,5 @@
 package com.java.repository;
+import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.HibernateException;
@@ -24,8 +25,25 @@ public class CustomRepositoryHibTemp implements CustomerRepository {
 
 	@Override
 	public Customer validation(Customer customer) {
-		// TODO Auto-generated method stub
-		return null;
+		Customer mycustomer = null;
+		List list = template.findByNamedParam("from Customer where userName=:userName", "userName", customer.getUserName()); 
+		Iterator it = list.iterator();
+		if(it.hasNext()) {
+			mycustomer = (Customer) it.next();		/* userName is unique so only one or null result may resturn*/
+		}  
+		
+		if(mycustomer == null) {
+			System.out.println("customer is null");
+			return null;
+		}
+		
+		if(mycustomer != null && customer.getPassWord().equals(mycustomer.getPassWord())) {
+			System.out.println("customer is not !! null");
+			return mycustomer;
+		}
+		else {
+			return null;
+		}
 	}
 
 	@Override

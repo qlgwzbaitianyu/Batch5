@@ -24,21 +24,21 @@
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a href="<spring:url value='/' />" class="navbar-brand">Home</a>
+            <a href="<spring:url value='/' />" class="navbar-brand"><spring:message code="home"></spring:message></a>
         </div>
 
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                  <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" role="button">Category <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" role="button"><spring:message code="category"></spring:message> <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="#">Electonic Products</a></li>
                         <li><a href="#">Daily Life Products</a></li>
                         <li><a href="#">Food</a></li>
                     </ul>
                 </li>
-                <li><a href="add-flightII.jsp">Customer Profile</a></li>
-                <li><a href="addAirPlane.jsp">Shopping Cart</a></li>
+                <li><a href="add-flightII.jsp"><spring:message code="customerProfile"></spring:message></a></li>
+                <li><a href="addAirPlane.jsp"><spring:message code="shoppingcart"></spring:message></a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
@@ -49,6 +49,12 @@
                     </li>
                     <li>
                         <a href="<spring:url value='/upd' />" >Register</a>
+                    </li>
+                    <li>
+                    	<a href="<%=request.getContextPath() %>?mylocale=en">English</a> <br>
+                    </li>
+                    <li>
+                    	<a href="<%=request.getContextPath() %>?mylocale=zh">Chinese</a> <br>
                     </li>
                     
                     <%-- <li>
@@ -63,7 +69,8 @@
     </div>
 </nav>
 
-		<h4> this is the shopping home page </h4>
+		<h4><spring:message code="homemessage"></spring:message></h4> <br>
+	
 
 </body>
 </html>

@@ -13,13 +13,22 @@
 		${loginMsg}
 		<br>
 		
-		<form action='login.do'>
+	<%-- 	<form action='login.do'>
 			<input type='text' name='userName' placeholder='Enter Username'><br>
 			<input type='password' name='passWord' placeholder='Enter Password'><br>
-		<input type='submit' value='Login'>
-	</form>
+			<input type='submit' value='Login'>
+		</form> --%>
 	
 	<br>
+	
+	<form:form action='login.do' method="post" modelAttribute="Customer">
+			UserName :<form:input path="userName" />
+			<form:errors path="userName"/><br>
+			PassWord :<form:input path="passWord" />
+			<form:errors path="passWord"/><br>
+
+			<input type="submit" value="Login">
+	</form:form>
 	
 	
 
