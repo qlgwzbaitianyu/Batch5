@@ -1,6 +1,7 @@
 package com.java.repository;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import com.java.bean.Customer;
 import com.java.bean.ShippingAddress;
+import com.java.bean.ShoppingCart;
 
 @Repository("rep2")
 public class CustomRepositoryHibTemp implements CustomerRepository {
@@ -39,11 +41,17 @@ public class CustomRepositoryHibTemp implements CustomerRepository {
 		
 		if(mycustomer != null && customer.getPassWord().equals(mycustomer.getPassWord())) {
 			System.out.println("customer is not !! null");
+			/*ShoppingCart cart = customer.getShoppingCart();
+			Map<String, Integer> productInCart = cart.getProductsInCart();
+			for (Map.Entry<String, Integer> item : productInCart.entrySet()) {
+			}*/
+			
 			return mycustomer;
 		}
 		else {
 			return null;
 		}
+		
 	}
 
 	@Override

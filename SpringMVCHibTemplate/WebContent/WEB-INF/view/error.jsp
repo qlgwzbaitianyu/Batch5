@@ -12,7 +12,7 @@
 ${errorMsg}
 <br>
 
- <a href="<spring:url value='/goHome' />" >Go Home</a>
+ <a href="<spring:url value='/' />" >Go Home</a>
 
 </body>
 </html>

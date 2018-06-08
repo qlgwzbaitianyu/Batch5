@@ -19,6 +19,7 @@ import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.LocaleResolver;
@@ -30,14 +31,18 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+import com.java.bean.Category;
 import com.java.bean.Customer;
 import com.java.bean.Employee;
+import com.java.bean.Product;
 import com.java.bean.ShippingAddress;
+import com.java.bean.ShoppingCart;
 
 @Configuration
 @ComponentScan(basePackages="com.java")
 @PropertySource({"classpath:database.properties"})
 @EnableWebMvc
+@EnableTransactionManagement
 public class SpringConfig implements WebMvcConfigurer{
 	
 	@Autowired
@@ -68,6 +73,9 @@ public class SpringConfig implements WebMvcConfigurer{
 	    LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource());
 	    sessionBuilder.addAnnotatedClasses(Customer.class);
 	    sessionBuilder.addAnnotatedClasses(ShippingAddress.class);
+	    sessionBuilder.addAnnotatedClasses(Category.class);
+	    sessionBuilder.addAnnotatedClasses(Product.class);
+	    sessionBuilder.addAnnotatedClasses(ShoppingCart.class);
 	    sessionBuilder.addProperties(hibernateProperties());
 	    return sessionBuilder.buildSessionFactory();
 	}
@@ -115,6 +123,8 @@ public class SpringConfig implements WebMvcConfigurer{
 		interceptor.setParamName("mylocale");
 		registry.addInterceptor(interceptor).addPathPatterns("/*");
 	}
+	
+	
 	
 	
 }

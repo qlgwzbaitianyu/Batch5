@@ -34,9 +34,9 @@
                  <li class="dropdown">
                     <a href="#" class="dropdown-toggle" role="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><spring:message code="category"></spring:message> <span class="caret"></span></a>
                     <ul class="dropdown-menu aria-labelledby="dropdownMenuButton"">
-                        <li><a class="dropdown-item" href="#">Electonic Products</a></li>
-                        <li><a class="dropdown-item" href="#">Daily Life Products</a></li>
-                        <li><a class="dropdown-item" href="#">Food</a></li>
+                       <li><a class="dropdown-item" href="/SpringMVCHibTemplate/displayCategory?id=1">Electonic Products</a></li>
+                        <li><a class="dropdown-item" href="/SpringMVCHibTemplate/displayCategory?id=2">Daily Life Products</a></li>
+                        <li><a class="dropdown-item" href="/SpringMVCHibTemplate/displayCategory?id=3">Food</a></li>
                     </ul>
                 </li>
                 <li><a href="add-flightII.jsp"><spring:message code="customerProfile"></spring:message></a></li>
@@ -68,8 +68,26 @@
     </div>
 </nav>
 
-		<% Product product = (Product)request.getAttribute("product"); %>
-		<% out.println(product); %>
+		<% Category category = (Category)request.getAttribute("category"); %>
+		<% out.println(category); %>
+		<br>
+		 <% Set<Product> productSet=(Set<Product>)category.getProducts(); %>
+		 <% for(Product product : productSet) { %>
+		 			<br>
+            		<td><%="Product Name: "%></td>
+            		<td><%=product.getName()%></td>
+            		<br>
+            		<td><%="Product Price: "%></td>
+            		<td><%=product.getPrice()%></td>
+            		<br>
+            		<td><%="Product Description: "%></td>
+            		<td><%=product.getDescription()%></td>
+            		<br>
+            		<br>
+            		
+          <% } %> 
+		 
+		 
 		
 		<br>
 		<br>

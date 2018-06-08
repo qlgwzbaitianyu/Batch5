@@ -21,7 +21,7 @@
 	
 	<br>
 	
-	<form:form action='login.do' method="post" modelAttribute="Customer">
+	<form:form action='login' modelAttribute="loginobj">
 			UserName :<form:input path="userName" />
 			<form:errors path="userName"/><br>
 			PassWord :<form:input path="passWord" />

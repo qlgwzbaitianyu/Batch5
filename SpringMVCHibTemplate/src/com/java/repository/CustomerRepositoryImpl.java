@@ -44,6 +44,7 @@ public class CustomerRepositoryImpl implements CustomerRepository {
 		if(mycustomer != null && customer.getPassWord().equals(mycustomer.getPassWord())) {
 			System.out.println("customer is not !! null");
 			customerResult = mycustomer;
+			
 		}
 		else {
 			customerResult = null;

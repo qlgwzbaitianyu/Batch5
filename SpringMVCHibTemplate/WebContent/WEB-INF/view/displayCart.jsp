@@ -68,8 +68,25 @@
     </div>
 </nav>
 
-		<% Product product = (Product)request.getAttribute("product"); %>
-		<% out.println(product); %>
+		<% ShoppingCart shoppingCart = (ShoppingCart)request.getAttribute("shoppingCart"); %>
+		<% out.println(shoppingCart); %>
+		<% Map<String, Integer> productMap = shoppingCart.getProductsInCart(); %>
+		 <% for (Map.Entry<String, Integer> item : productMap.entrySet()) {%>
+		 			<br>
+		 			<% String key = item.getKey();
+				    Integer value = item.getValue(); %>
+				    
+            		<td><%="Product Name: "%></td>
+            		<td><%=key%></td>
+            		<br>
+            		<td><%="Product Quantity: "%></td>
+            		<td><%=value%></td>
+            		<br>
+            		<br> 		
+          <% } %> 
+          <%="Total Price: "%>
+         <% shoppingCart.getTotalPrice(); %>
+          
 		
 		<br>
 		<br>

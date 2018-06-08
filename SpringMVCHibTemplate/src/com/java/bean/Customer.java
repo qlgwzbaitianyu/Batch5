@@ -1,7 +1,10 @@
 package com.java.bean;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,6 +16,9 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.BatchSize;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.validator.constraints.Length;
 /*import org.hibernate.search.annotations.Analyze;
 import org.hibernate.search.annotations.Field;
@@ -41,14 +47,20 @@ public class Customer {
 	@NotBlank
 	String passWord;
 	
-	@NotBlank
-	@Email
+	//@NotBlank
+	//@Email
 	String email;
 	
 	@OneToOne
 	@JoinColumn(name ="shippingForiegnKey")
-	@IsValidPhoneNumber(message="wrong shipping address")
+	//@IsValidPhoneNumber(message="wrong shipping address")
 	ShippingAddress shippingAddress;
+	
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name ="cartForiegnKey")
+	//@Fetch(FetchMode.SELECT)
+    //@BatchSize(size = 10)
+	ShoppingCart shoppingCart;
 	
 	String phoneNumber;
 
@@ -56,9 +68,26 @@ public class Customer {
 	public Customer() {
 		super();
 		// TODO Auto-generated constructor stub
+		this.shippingAddress = new ShippingAddress();
+		this.shoppingCart = new ShoppingCart();
+	}
+	
+	
+	
+	public Customer(Integer customerId, @NotBlank @Size(min = 4, max = 6) String userName, @NotBlank String passWord,
+			String email, ShippingAddress shippingAddress, ShoppingCart shoppingCart, String phoneNumber) {
+		super();
+		this.customerId = customerId;
+		this.userName = userName;
+		this.passWord = passWord;
+		this.email = email;
+		this.shippingAddress = shippingAddress;
+		this.shoppingCart = shoppingCart;
+		this.phoneNumber = phoneNumber;
 	}
 
-	
+
+
 	public Customer(Integer customerId, String userName, String passWord, String email,
 			ShippingAddress shippingAddress) {
 		super();
@@ -84,6 +113,19 @@ public class Customer {
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}
+
+	
+	
+	public ShoppingCart getShoppingCart() {
+		return shoppingCart;
+	}
+
+
+
+	public void setShoppingCart(ShoppingCart shoppingCart) {
+		this.shoppingCart = shoppingCart;
+	}
+
 
 
 	public void setPhoneNumber(String phoneNumber) {
@@ -123,6 +165,20 @@ public class Customer {
 		this.email = email;
 	}
 	
+	
+	
+	public Integer getCustomerId() {
+		return customerId;
+	}
+
+
+
+	public void setCustomerId(Integer customerId) {
+		this.customerId = customerId;
+	}
+
+
+
 	@Override
 	public String toString() {
 		return this.userName + " " + this.passWord + " " + this.getShippingAddress().getStreet() + " " + this.getShippingAddress().getCity();
