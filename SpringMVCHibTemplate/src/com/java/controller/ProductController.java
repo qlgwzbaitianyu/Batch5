@@ -55,7 +55,7 @@ public class ProductController {
 	
 	@RequestMapping("/displayProduct")
 	public ModelAndView displayProduct(@RequestParam("productId") String productId) { 
-		ModelAndView mv = new ModelAndView("display");
+		ModelAndView mv = new ModelAndView("displayProduct");
 		Product product = categoryService.findProductById(productId);
 		mv.addObject("product", product);
 		return mv;
@@ -66,12 +66,7 @@ public class ProductController {
 	public ModelAndView displayCategory(@RequestParam("id") String categoryId) { 
 		ModelAndView mv = new ModelAndView("showCategory");
 		Category category = categoryService.findCategoryById(categoryId);
-		
-		//List<Category> categoryList = categoryService.findAllCategory();
-		//Category category = categoryList.get(0);
 		mv.addObject("category", category);
 		return mv;
 	}
-	
-	
 }

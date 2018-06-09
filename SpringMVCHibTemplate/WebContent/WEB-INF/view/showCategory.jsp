@@ -34,13 +34,13 @@
                  <li class="dropdown">
                     <a href="#" class="dropdown-toggle" role="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><spring:message code="category"></spring:message> <span class="caret"></span></a>
                     <ul class="dropdown-menu aria-labelledby="dropdownMenuButton"">
-                       <li><a class="dropdown-item" href="/SpringMVCHibTemplate/displayCategory?id=1">Electonic Products</a></li>
+                        <li><a class="dropdown-item" href="/SpringMVCHibTemplate/displayCategory?id=1">Electonic Products</a></li>
                         <li><a class="dropdown-item" href="/SpringMVCHibTemplate/displayCategory?id=2">Daily Life Products</a></li>
                         <li><a class="dropdown-item" href="/SpringMVCHibTemplate/displayCategory?id=3">Food</a></li>
                     </ul>
                 </li>
                 <li><a href="add-flightII.jsp"><spring:message code="customerProfile"></spring:message></a></li>
-                <li><a href="addAirPlane.jsp"><spring:message code="shoppingcart"></spring:message></a></li>
+                <li><a href="<spring:url value='/showCart' />"><spring:message code="shoppingcart"></spring:message></a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
@@ -68,8 +68,10 @@
     </div>
 </nav>
 
+
+
 		<% Category category = (Category)request.getAttribute("category"); %>
-		<% out.println(category); %>
+		<h4><%=category.getName() %></h4>
 		<br>
 		 <% Set<Product> productSet=(Set<Product>)category.getProducts(); %>
 		 <% for(Product product : productSet) { %>
@@ -84,8 +86,12 @@
             		<td><%=product.getDescription()%></td>
             		<br>
             		<br>
+            		<form action='addProductToCart'>
+        				<input type='hidden' name='productId'  value="<%=product.getId()%>">
+						<button type="submit" class="btn btn-primary">add to Cart</button>
+					</form>
             		
-          <% } %> 
+          <% } %>  
 		 
 		 
 		

@@ -21,6 +21,12 @@ public interface CategoryService {
 	
 	
 	public Product findProductById(String productId);
+	/*
+	 * find prduct base on name
+	 * input: String productName
+	 * output: corresponding Product Object
+	 * */
+	public Product findProductByName(String productName);
 	
 	public Category findCategoryById(String categoryId);
 }

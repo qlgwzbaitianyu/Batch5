@@ -28,6 +28,12 @@ public interface CategoeryRepository {
 	 * */
 	public Product findProductById(String productId);
 	/*
+	 * find prduct base on name
+	 * input: String productName
+	 * output: corresponding Product Object
+	 * */
+	public Product findProductByName(String productName);
+	/*
 	 * get all the category objects from the db
 	 * input: String productId
 	 * output: corresponding Product Object

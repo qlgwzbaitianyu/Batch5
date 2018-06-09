@@ -80,7 +80,7 @@
 			<br>
 			<% for(int i = 0; i < productList.size(); i+=1) { %>
         <tr>
-            <a href="#"><%="Product Name: " + productList.get(i).getName()%></a>
+            <%="Product Name: " + productList.get(i).getName()%></a>
             <br>
             <td><%="Product Price: "%></td>
             <td><%=productList.get(i).getPrice()%></td>

@@ -18,10 +18,10 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     
     
-	<title>Display Product</title>
+	<title>Home Page</title>
 </head>
 <body>
-<body>
+
 
 <nav class="navbar navbar-default">
     <div class="container-fluid">
@@ -68,33 +68,28 @@
     </div>
 </nav>
 
-
-		<% ShoppingCart shoppingCart = (ShoppingCart)request.getAttribute("shoppingCart"); %>
+		<% Product product = (Product)request.getAttribute("product"); %>
+		<br>
+		 <tr>
+            <%="Product Name: " + product.getName()%></a>
+            <br>
+            <td><%="Product Price: "%></td>
+            <td><%=product.getPrice()%></td>
+            <br>
+            <td><%="Product Description: "%></td>
+            <td><%=product.getDescription()%></td>
+            <br>
+            <td><%="Product Category: "%></td>
+            <td><%=product.getCategory().getName()%></td>
+            <br>
+            <form action='addProductToCart'>
+        				<input type='hidden' name='productId'  value="<%=product.getId()%>">
+						<button type="submit" class="btn btn-primary">add to Cart</button>
+			</form>
+          
+        </tr>
 		
-		<% Map<String, Integer> productMap = shoppingCart.getProductsInCart(); %>
-		<% for (Map.Entry<String, Integer> item : productMap.entrySet()) {%>
-		 			<br>
-		 			<% String key = item.getKey();
-				    Integer value = item.getValue(); %>
-				    
-            		<td><%="Product Name: "%></td>
-            		<td><%=key%></td>
-            		<br>
-            		<td><%="Product Quantity: "%></td>
-            		<td><%=value%></td>
-            		<br>
-            		<br>
-       				<form action='removeProductFromCart'>
-        				<input type='hidden' name='productName'  value="<%=key%>">
-						<button type="submit" class="btn btn-primary">remove from Cart</button>
-					</form> 		
-          <% } %> 
-          
-          <%if(!productMap.isEmpty()) {%>
-          <%="Total Price: "%>
-          <%= shoppingCart.getTotalPrice() %>
-          <% } %> 
-          
+		
 		<br>
 		<br>
 		<a href="<spring:url value='/' />" >Go Home</a>

@@ -56,22 +56,55 @@ import com.java.service.ShoppingCartService;
 public class ShoppingCartController {
 	@Autowired
 	ShoppingCartService shoppingCartService;
+	@Autowired
+	CategoryService categoryService;
 	
 	@RequestMapping("/showCart")
 	public ModelAndView displayProduct(HttpServletRequest request) { 
 		ModelAndView mv = new ModelAndView("displayCart");
 		HttpSession session = request.getSession();
 		Customer customer = (Customer)session.getAttribute("customer");
-		
-		ShoppingCart cart = shoppingCartService.findShoppingCartById(customer.getShoppingCart().getCartId());
-		
-		
-		mv.addObject("shoppingCart", cart);
-		
-		
-		
+		if(customer == null) {
+			mv.addObject("loginobj", new Login());
+			mv.setViewName("login");
+		}
+		else {
+			ShoppingCart cart = shoppingCartService.findShoppingCartById(customer.getShoppingCart().getCartId());
+			mv.addObject("shoppingCart", cart);
+		}
 		return mv;
 	}
 	
+	@RequestMapping("/addProductToCart")
+	public ModelAndView addProductToCart(HttpServletRequest request) { 
+		ModelAndView mv = new ModelAndView("productAdded");
+		HttpSession session = request.getSession();
+		Customer customer = (Customer)session.getAttribute("customer");
+		if(customer == null) {
+			mv.addObject("loginobj", new Login());
+			mv.setViewName("login");
+		}
+		else {
+			String productId = request.getParameter("productId");
+			Product product = categoryService.findProductById(productId);
+			ShoppingCart shoppingCart = shoppingCartService.findShoppingCartById(customer.getShoppingCart().getCartId());
+			shoppingCartService.addProductToCart(shoppingCart, product);
+		}
+		return mv;
+	}
+	
+	
+	@RequestMapping("/removeProductFromCart")
+	public ModelAndView removeProductFromCart(HttpServletRequest request) { 
+		ModelAndView mv = new ModelAndView("productRemoved");
+		HttpSession session = request.getSession();
+		
+		Customer customer = (Customer)session.getAttribute("customer");
+		String productName = request.getParameter("productName");
+		Product product = categoryService.findProductByName(productName);
+		ShoppingCart shoppingCart = shoppingCartService.findShoppingCartById(customer.getShoppingCart().getCartId());
+		shoppingCartService.removeProductInCart(shoppingCart, product);
+		return mv;
+	}
 
 }

@@ -156,18 +156,6 @@ public class LoginController {
 		return "error";
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	@RequestMapping("/goHome")
 	public String toHome() { 
 		return "forward:/";
@@ -179,21 +167,4 @@ public class LoginController {
 		session.invalidate();
 		return "forward:/";
 	}
-	
-
-	
-	
-	
-	
-	
-	
-	/*@RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
-	public @ResponseBody
-	ModelAndView submit(@ModelAttribute("file") MultipartFile file, ModelMap modelMap) {
-		ModelAndView mv = new ModelAndView("fileUploadView");
-		mv.addObject("file", file);
-	    //modelMap.addAttribute("file", file);
-	    return mv;
-	}*/
-
 }

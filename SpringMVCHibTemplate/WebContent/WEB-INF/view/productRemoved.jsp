@@ -18,10 +18,10 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     
     
-	<title>Display Product</title>
+	<title>Product Removed</title>
 </head>
 <body>
-<body>
+
 
 <nav class="navbar navbar-default">
     <div class="container-fluid">
@@ -68,36 +68,10 @@
     </div>
 </nav>
 
-
-		<% ShoppingCart shoppingCart = (ShoppingCart)request.getAttribute("shoppingCart"); %>
+		<h4> Product Removed Cart </h4> <br>
 		
-		<% Map<String, Integer> productMap = shoppingCart.getProductsInCart(); %>
-		<% for (Map.Entry<String, Integer> item : productMap.entrySet()) {%>
-		 			<br>
-		 			<% String key = item.getKey();
-				    Integer value = item.getValue(); %>
-				    
-            		<td><%="Product Name: "%></td>
-            		<td><%=key%></td>
-            		<br>
-            		<td><%="Product Quantity: "%></td>
-            		<td><%=value%></td>
-            		<br>
-            		<br>
-       				<form action='removeProductFromCart'>
-        				<input type='hidden' name='productName'  value="<%=key%>">
-						<button type="submit" class="btn btn-primary">remove from Cart</button>
-					</form> 		
-          <% } %> 
-          
-          <%if(!productMap.isEmpty()) {%>
-          <%="Total Price: "%>
-          <%= shoppingCart.getTotalPrice() %>
-          <% } %> 
-          
-		<br>
-		<br>
 		<a href="<spring:url value='/' />" >Go Home</a>
 
+		 
 </body>
 </html>

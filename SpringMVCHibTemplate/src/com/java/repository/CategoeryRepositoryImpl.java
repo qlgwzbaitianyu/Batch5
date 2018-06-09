@@ -76,6 +76,19 @@ public class CategoeryRepositoryImpl implements CategoeryRepository {
 		
 		return category;
 	}
+
+
+	@Override
+	public Product findProductByName(String productName) {
+		System.out.println("in category repository the product name is: " + productName);
+		Session session = template.getSessionFactory().getCurrentSession();
+		String hql = "FROM Product p WHERE p.name = :product_name";
+		Query query = session.createQuery(hql);
+		query.setParameter("product_name",productName);
+		
+		return (Product)query.getSingleResult();
+		
+	}
 	
 	
 

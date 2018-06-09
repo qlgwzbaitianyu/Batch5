@@ -36,4 +36,42 @@ public class ShoppingCartRepositoryImpl implements ShoppingCartRepository {
 		return cart;
 	}
 
+
+	@Override
+	public void addProductToCart(ShoppingCart shoppingCart, Product product) {
+		Session session = template.getSessionFactory().getCurrentSession();
+		Map<String, Integer> productMap = shoppingCart.getProductsInCart();
+		
+		if(productMap.containsKey(product.getName())) {			/* already have item in the cart*/
+			Integer value = productMap.get(product.getName());
+			productMap.put(product.getName(), value+1);
+		}
+		else {	/* first time put this product in cart*/
+			productMap.put(product.getName(), 1);
+		}
+		shoppingCart.setProductsInCart(productMap);
+		shoppingCart.setTotalPrice(shoppingCart.getTotalPrice() + product.getPrice());	/* update total price*/
+		session.update(shoppingCart);
+	}
+
+
+	@Override
+	public void removeProductInCart(ShoppingCart shoppingCart, Product product) {
+		Session session = template.getSessionFactory().getCurrentSession();
+		Map<String, Integer> productMap = shoppingCart.getProductsInCart();
+		
+		if(productMap.containsKey(product.getName())) {			/* already have item in the cart*/
+			Integer value = productMap.get(product.getName());
+			if(value > 1) {
+				productMap.put(product.getName(), value-1);
+			}
+			else {
+				productMap.remove(product.getName());
+			}
+		}
+		shoppingCart.setProductsInCart(productMap);
+		shoppingCart.setTotalPrice(shoppingCart.getTotalPrice() - product.getPrice());	/* update total price*/
+		session.update(shoppingCart);
+	}
+	
 }

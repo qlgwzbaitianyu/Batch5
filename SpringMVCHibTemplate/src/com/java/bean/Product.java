@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
  
 @Entity
 @Table(name = "PRODUCT")
@@ -44,6 +45,7 @@ public class Product {
         return category;
     }
 
+   // @Column(unique = true)
 	public String getName() {
 		return name;
 	}
