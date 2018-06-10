@@ -34,6 +34,12 @@ public interface CategoeryRepository {
 	 * */
 	public Product findProductByName(String productName);
 	/*
+	 * find number of product
+	 * input: void
+	 * output: number of product
+	 * */
+	public long findProductCount();
+	/*
 	 * get all the category objects from the db
 	 * input: String productId
 	 * output: corresponding Product Object

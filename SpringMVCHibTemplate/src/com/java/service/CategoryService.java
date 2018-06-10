@@ -27,6 +27,12 @@ public interface CategoryService {
 	 * output: corresponding Product Object
 	 * */
 	public Product findProductByName(String productName);
+	/*
+	 * find number of product
+	 * input: void
+	 * output: number of product
+	 * */
+	public long findProductCount();
 	
 	public Category findCategoryById(String categoryId);
 }

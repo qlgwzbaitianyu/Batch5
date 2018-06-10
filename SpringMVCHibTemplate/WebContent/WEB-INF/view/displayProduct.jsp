@@ -35,8 +35,8 @@
                     <a href="#" class="dropdown-toggle" role="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><spring:message code="category"></spring:message> <span class="caret"></span></a>
                     <ul class="dropdown-menu aria-labelledby="dropdownMenuButton"">
                         <li><a class="dropdown-item" href="/SpringMVCHibTemplate/displayCategory?id=1">Electonic Products</a></li>
-                        <li><a class="dropdown-item" href="/SpringMVCHibTemplate/displayCategory?id=2">Daily Life Products</a></li>
-                        <li><a class="dropdown-item" href="/SpringMVCHibTemplate/displayCategory?id=3">Food</a></li>
+                        <li><a class="dropdown-item" href="/SpringMVCHibTemplate/displayCategory?id=7">Daily Life Products</a></li>
+                        <li><a class="dropdown-item" href="/SpringMVCHibTemplate/displayCategory?id=1">Food</a></li>
                     </ul>
                 </li>
                 <li><a href="add-flightII.jsp"><spring:message code="customerProfile"></spring:message></a></li>

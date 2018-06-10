@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.BatchSize;
  
  
 @Entity
@@ -38,6 +40,7 @@ public class Category {
     //@OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     //@OneToMany(mappedBy = "category",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)//, fetch = FetchType.EAGER)
+    @BatchSize(size = 5)
     public Set<Product> getProducts() {
         return products;
     }

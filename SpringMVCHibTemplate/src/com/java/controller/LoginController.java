@@ -24,6 +24,7 @@ import org.springframework.stereotype.*;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -60,21 +61,20 @@ public class LoginController {
 	public ModelAndView startPage(Model model, String first, String max) { 
 		ModelAndView mv = new ModelAndView("homePage");
 		List<Product> productList = null;
-		/* read the category from db and add to model*/
-		List<Category> categoryList = categoryService.findAllCategory();
+		long productCount;
 		
-		System.out.println("the size of categoryList : " + categoryList.size());
-		
+		List<Category> categoryList = categoryService.findAllCategory(); 	/* read the category from db and add to model*/
 		if(first == null) {				/* pass pagenation param*/
-			System.out.println("page first is null !!");
 			productList = categoryService.findAllProduct("1", "4");
 		}
 		else {
 			productList = categoryService.findAllProduct(first, max);
 		}
+		productCount = categoryService.findProductCount();	/*get the number of products*/
 		
 		mv.addObject("categoryList", categoryList);
 		mv.addObject("productList", productList);
+		mv.addObject("productCount", productCount);
 		return mv;
 	}
 	
@@ -88,14 +88,18 @@ public class LoginController {
 		return mv;
 	}
 	@RequestMapping(path="/login")
-	public String login(@Valid @ModelAttribute("loginobj") Login login, HttpServletRequest request, BindingResult result, Model model) { 
-		System.out.println("~~ in login controller ~~");
+	public String login(@ModelAttribute("loginobj") Login login, HttpServletRequest request, BindingResult result, Model model) { 
+		ModelAndView mv = new ModelAndView();
 		if(result.hasErrors()) {
-			System.out.println("!!! in error !!!!");
-			return "login";
+			mv.addObject("errorMsg", "Invalid Format of Input Try it again");
+			return "errors";
 		}
 		
-		ModelAndView mv = new ModelAndView();
+		if(login.getUserName().equals(null) || login.getPassWord().equals(null)) {
+			mv.addObject("errorMsg", "UserName or PassWord Can Not Be Empty");
+			return "errors";
+		}
+		
 		Customer customer = new Customer();
 		customer.setUserName(login.getUserName());
 		customer.setPassWord(login.getPassWord());
@@ -166,5 +170,14 @@ public class LoginController {
 		HttpSession session = request.getSession();
 		session.invalidate();
 		return "forward:/";
+	}
+	
+	@ExceptionHandler(Exception.class)
+	public ModelAndView handleAllException(Exception ex) {
+		ModelAndView model = new ModelAndView("error");
+		model.addObject("errorMsg", "General Exception: Please try again");
+
+		return model;
+
 	}
 }

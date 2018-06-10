@@ -35,8 +35,8 @@
                     <a href="#" class="dropdown-toggle" role="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><spring:message code="category"></spring:message> <span class="caret"></span></a>
                     <ul class="dropdown-menu aria-labelledby="dropdownMenuButton"">
                         <li><a class="dropdown-item" href="/SpringMVCHibTemplate/displayCategory?id=1">Electonic Products</a></li>
-                        <li><a class="dropdown-item" href="/SpringMVCHibTemplate/displayCategory?id=2">Daily Life Products</a></li>
-                        <li><a class="dropdown-item" href="/SpringMVCHibTemplate/displayCategory?id=3">Food</a></li>
+                        <li><a class="dropdown-item" href="/SpringMVCHibTemplate/displayCategory?id=7">Daily Life Products</a></li>
+                        <li><a class="dropdown-item" href="/SpringMVCHibTemplate/displayCategory?id=8">Food</a></li>
                     </ul>
                 </li>
                 <li><a href="add-flightII.jsp"><spring:message code="customerProfile"></spring:message></a></li>
@@ -68,13 +68,11 @@
     </div>
 </nav>
 
+
 		<h4><spring:message code="homemessage"></spring:message></h4> <br>
 		<% List<Product> productList= (List<Product>)request.getAttribute("productList"); %>
+		<% Long productCount = (Long)request.getAttribute("productCount"); %>
 		<%if(productList.size() == 0) { %>
-				
-		
-		
-		
 		<% }else %>
 		<% { %>
 			<br>
@@ -104,43 +102,16 @@
 		
 		<% } %>
 		
-		 <ul class="pagination"> 
-			<li><a href="#">&laquo;</a></li>   
-			<li><a href="/SpringMVCHibTemplate/?first=0&max=3">1</a></li>
-			<li><a href="/SpringMVCHibTemplate/?first=4&max=3">2</a></li>
-			<li><a href="/SpringMVCHibTemplate/?first=7&max=3">3</a></li>
-			<li><a href="#">&raquo;</a></li>    
-		 <ul>
+		<img SRC="https://upload.wikimedia.org/wikipedia/commons/b/b7/Lenovo_G500s_laptop-2903.jpg" width="100" height="100">
 		 
-		 
-		 
-		
-		<%-- <% List<Category> categoryList= (List<Category>)request.getAttribute("categoryList"); %>
-		<%=categoryList.size() %>
-		<br>
-			<% for(int i = 0; i < categoryList.size(); i+=1) { %>
-        <tr>
-        	<td><%="Category Name: "%></td>
-            <td><%=categoryList.get(i).getName()%></td>
-            <br>
-            <% Set<Product> productSet=(Set<Product>)categoryList.get(i).getProducts(); %>
-            <tr>
-            	<% for(Product product : productSet) { %>
-            		<td><%="Product Name: "%></td>
-            		<td><%=product.getName()%></td>
-            		<br>
-            		<td><%="Product Price: "%></td>
-            		<td><%=product.getPrice()%></td>
-            		<br>
-            		<td><%="Product Description: "%></td>
-            		<td><%=product.getDescription()%></td>
-            		<br>
-            		
-            	<% } %>
-            </tr> 
-        </tr>
-        <br>
-        <br>
-    <% } %>  --%>
+		  <ul class="pagination"> 
+		  <% for(int i = 0; i < (productCount/3); i+=1) { %>
+		 		<li><a href="/SpringMVCHibTemplate/?first=<%=i*3 %>&max=3"><%=i + 1 %></a></li>
+		 		<%System.out.println("in home page: " + i + " productsize : " + productList.size()); %>
+		  <% } %>
+		   <% if(productCount % 3 != 0) {%>
+		   		<li><a href="/SpringMVCHibTemplate/?first=<%=(productCount/3)*3 %>&max=3"><%=(productCount/3) + 1 %></a></li>
+		   <% } %>
+		  <ul>
 </body>
 </html>

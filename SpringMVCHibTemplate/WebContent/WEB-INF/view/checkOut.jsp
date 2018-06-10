@@ -16,10 +16,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<title>Product Added</title>
+    
+    
+	<title>Display Product</title>
 </head>
 <body>
-
+<body>
 
 <nav class="navbar navbar-default">
     <div class="container-fluid">
@@ -66,10 +68,16 @@
     </div>
 </nav>
 
-		<h4> Product Added to Cart </h4> <br>
+		<h4> Your Total Price is: ${totalPrice} </h4>
+		
+		<form action='pay'>
+			<input type='text' name='Credicard Number' placeholder='Enter Credicard Number'><br>
+			<input type='text' name='CardHold Name' placeholder='Enter Card Holder Name'><br>
+			<input type='text' name='Expire Date' placeholder='Enter Expire Date'><br>
+			<input type='submit' value='Make Payment'>
+		</form> 	
 		
 		<a href="<spring:url value='/' />" >Go Home</a>
 
-		 
 </body>
 </html>

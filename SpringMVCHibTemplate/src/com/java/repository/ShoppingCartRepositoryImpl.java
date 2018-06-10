@@ -73,5 +73,19 @@ public class ShoppingCartRepositoryImpl implements ShoppingCartRepository {
 		shoppingCart.setTotalPrice(shoppingCart.getTotalPrice() - product.getPrice());	/* update total price*/
 		session.update(shoppingCart);
 	}
+
+
+	@Override
+	public void makePayment(ShoppingCart shoppingCart) {
+		Session session = template.getSessionFactory().getCurrentSession();
+		Map<String, Integer> productMap = shoppingCart.getProductsInCart();
+		
+		productMap.clear();				/*clear the map and 0 the price*/
+		shoppingCart.setProductsInCart(productMap);
+		shoppingCart.setTotalPrice(0);
+		session.update(shoppingCart);
+	}
+	
+	
 	
 }

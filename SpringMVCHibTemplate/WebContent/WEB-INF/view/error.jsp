@@ -1,12 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ page session="true" %>
+<%@ page import="com.java.bean.Customer" %>
+<%@ page import="com.java.bean.*" %>
+<%@ page import="java.util.*" %>
 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+    
+	<title>Error Page</title>
 </head>
 <body>
 <nav class="navbar navbar-default">
@@ -21,8 +33,8 @@
                     <a href="#" class="dropdown-toggle" role="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><spring:message code="category"></spring:message> <span class="caret"></span></a>
                     <ul class="dropdown-menu aria-labelledby="dropdownMenuButton"">
                         <li><a class="dropdown-item" href="/SpringMVCHibTemplate/displayCategory?id=1">Electonic Products</a></li>
-                        <li><a class="dropdown-item" href="/SpringMVCHibTemplate/displayCategory?id=2">Daily Life Products</a></li>
-                        <li><a class="dropdown-item" href="/SpringMVCHibTemplate/displayCategory?id=3">Food</a></li>
+                        <li><a class="dropdown-item" href="/SpringMVCHibTemplate/displayCategory?id=7">Daily Life Products</a></li>
+                        <li><a class="dropdown-item" href="/SpringMVCHibTemplate/displayCategory?id=1">Food</a></li>
                     </ul>
                 </li>
                 <li><a href="add-flightII.jsp"><spring:message code="customerProfile"></spring:message></a></li>

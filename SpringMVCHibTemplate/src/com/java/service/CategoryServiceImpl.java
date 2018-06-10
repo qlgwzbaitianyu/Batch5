@@ -41,6 +41,11 @@ public class CategoryServiceImpl implements CategoryService {
 		return categoryRepository.findProductByName(productName);
 	}
 
+	@Override
+	public long findProductCount() {
+		return categoryRepository.findProductCount();
+	}
+
 	
 	
 }

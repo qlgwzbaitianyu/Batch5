@@ -22,4 +22,10 @@ public interface ShoppingCartService {
 	 * output: void
 	 * */
 	public void removeProductInCart(ShoppingCart shoppingCart, Product product);
+	/*
+	 * make payment on the shopping cart
+	 * input: shoppingCart object
+	 * output: void
+	 * */
+	public void makePayment(ShoppingCart shoppingCart);
 }

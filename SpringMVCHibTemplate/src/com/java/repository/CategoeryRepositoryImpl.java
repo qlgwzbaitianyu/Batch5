@@ -80,7 +80,6 @@ public class CategoeryRepositoryImpl implements CategoeryRepository {
 
 	@Override
 	public Product findProductByName(String productName) {
-		System.out.println("in category repository the product name is: " + productName);
 		Session session = template.getSessionFactory().getCurrentSession();
 		String hql = "FROM Product p WHERE p.name = :product_name";
 		Query query = session.createQuery(hql);
@@ -89,7 +88,14 @@ public class CategoeryRepositoryImpl implements CategoeryRepository {
 		return (Product)query.getSingleResult();
 		
 	}
-	
-	
 
+
+	@Override
+	public long findProductCount() {
+		Session session = template.getSessionFactory().getCurrentSession();
+		String hql = "select count(*) from Product";
+		Query query = session.createQuery(hql);
+		Long count = (Long)query.uniqueResult();
+		return count;
+	}
 }

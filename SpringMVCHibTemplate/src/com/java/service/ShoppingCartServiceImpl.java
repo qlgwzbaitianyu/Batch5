@@ -30,4 +30,11 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 		shoppingCartRepository.removeProductInCart(shoppingCart, product);
 	}
 
+	@Override
+	public void makePayment(ShoppingCart shoppingCart) {
+		shoppingCartRepository.makePayment(shoppingCart);
+	}
+	
+	
+
 }

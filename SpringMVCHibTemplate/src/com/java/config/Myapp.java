@@ -22,7 +22,8 @@ public class Myapp {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
 		
-		Category category = new Category("SuperComputer");
+		//category 1 super computer and products
+		/*Category category = new Category("SuperComputer");
         
         Product pc = new Product("DELL PC", "Quad-core PC", 1200, category);
          
@@ -31,6 +32,28 @@ public class Myapp {
         Product phone = new Product("iPhone 5", "Apple Best-selling smartphone", 499, category);
          
         Product tablet = new Product("iPad 3", "Apple Best-selling tablet", 1099, category);
+        
+        //Product tablet2 = new Product("iPad 3", "Apple Best-selling tablet", 1099, category);
+         
+        Set<Product> products = new HashSet<Product>();
+        products.add(pc);
+        products.add(laptop);
+        products.add(phone);
+        products.add(tablet);
+         
+        category.setProducts(products);
+        session.save(category);*/
+        
+        
+        Category category = new Category("Food");
+        
+        Product pc = new Product("Chicken", "Crispy Chicken", 20, category);
+         
+        Product laptop = new Product("Beef", "taste steak", 80, category);
+         
+        Product phone = new Product("Beer", "Budlight", 4, category);
+         
+        Product tablet = new Product("Milk", "Organic Milk", 3, category);
         
         //Product tablet2 = new Product("iPad 3", "Apple Best-selling tablet", 1099, category);
          

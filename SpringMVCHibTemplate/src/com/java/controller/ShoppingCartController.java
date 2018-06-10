@@ -106,5 +106,24 @@ public class ShoppingCartController {
 		shoppingCartService.removeProductInCart(shoppingCart, product);
 		return mv;
 	}
+	
+	
+	@RequestMapping("/checkOut")
+	public ModelAndView checkOut(@RequestParam("totalPrice") String totalPrice) { 
+		ModelAndView mv = new ModelAndView("checkOut");
+		mv.addObject("totalPrice", totalPrice);
+		return mv;
+	}
+	
+	@RequestMapping("/pay")
+	public String makePayment(HttpServletRequest request) { 
+		ModelAndView mv = new ModelAndView();
+		HttpSession session = request.getSession();
+		Customer customer = (Customer)session.getAttribute("customer");
+		ShoppingCart shoppingCart = shoppingCartService.findShoppingCartById(customer.getShoppingCart().getCartId());
+		
+		shoppingCartService.makePayment(shoppingCart);				/*empty the shopping cart*/
+		return "forward:/";
+	}
 
 }
