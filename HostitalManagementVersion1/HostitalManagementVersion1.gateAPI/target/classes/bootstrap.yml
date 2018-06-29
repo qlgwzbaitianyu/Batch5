@@ -1,0 +1,44 @@
+server:
+  port: 8760
+spring:
+  application:
+    name: GateAPI
+  cloud: 
+    config: 
+      uri: http://localhost:8774
+
+
+logging:
+  file: zuulLog.txt
+  level: 
+    com.gatewayAPI.service: info
+
+    
+
+zuul:
+  prefix: /api
+  routes:
+    cart-service:
+      path: /cart-service/**
+      url: http://laptop-ggoa4piq:8773
+      
+    user-service:
+      path: /user-service/**
+      url: http://laptop-ggoa4piq:8763 
+    order-service:
+      path: /order-service/**
+      url: http://laptop-ggoa4piq:8764
+    category-service:
+      path: /category-service/**
+      url: http://laptop-ggoa4piq:8765
+      
+  
+eureka:
+  instance:
+    appname: GateAPI
+  client:
+    registerWithEureka: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+      
+    
